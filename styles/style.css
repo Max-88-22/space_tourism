@@ -1,0 +1,726 @@
+/* ------------------------------------------------------------------------------------------------------------
+General
+--------------------------------------------------------------------------------------------------------------*/
+
+:root {
+    /* colors */
+    --main: 230 35% 7%;
+    --accent: 231 77% 90%;
+    --white: 0 0% 100%;
+
+    /* font-sizes */
+    --fs-900: 9.375rem;
+    /* 150px */
+    --fs-800: 6.25rem;
+    /* 100px */
+    --fs-700: 3.5rem;
+    /* 56px */
+    --fs-600: 2rem;
+    /* 32px */
+    --fs-500: 1.75rem;
+    /* 28px */
+    --fs-400: 1.125rem;
+    /* 18px */
+    --fs-300: 1rem;
+    /* 16px */
+    --fs-200: 0.875rem;
+    /* 14px */
+
+    /* font-families */
+    --ff-serif: "Bellefair", serif;
+    --ff-sans-cond: "Barlow Condensed", sans-serif;
+    --ff-sans-normal: "Barlow", sans-serif;
+
+    /* letter spacing */
+    --ls-1: 4.75px;
+    --ls-2: 2.7px;
+    --ls-3: 2.35px;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    text-rendering: optimizeSpeed;
+    /* background-color: hsl(var(--main)); */
+    font-family: var(--ff-sans-normal);
+    font-weight: 400;
+    font-size: 1.125rem;
+    color: hsl(var(--white));
+    line-height: 1.5;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
+    font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------------------------------------------
+Utility Classes
+--------------------------------------------------------------------------------------------------------------*/
+/* layout */
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.container {
+    margin-inline: auto;
+    padding-inline: 2em;
+    max-width: 100%;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.flow > * + * {
+    margin-top: var(--flowspace, 1rem)
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* colors */
+
+.bg-dark {
+    background-color: hsl(var(--main));
+}
+
+.bg-accent {
+    background-color: hsl(var(--accent));
+}
+
+.bg-white {
+    background-color: hsl(var(--white));
+}
+
+.text-dark {
+    color: hsl(var(--main));
+}
+
+.text-accent {
+    color: hsl(var(--accent));
+}
+
+.text-white {
+    color: hsl(var(--white));
+}
+
+/* typography */
+
+.ff-serif {
+    font-family: var(--ff-serif);
+}
+
+.ff-sans-cond {
+    font-family: var(--ff-sans-cond);
+}
+
+.ff-sans-normal {
+    font-family: var(--ff-sans-normal);
+}
+
+.ls-1 {
+    letter-spacing: 4.75px;
+}
+
+.ls-2 {
+    letter-spacing: 2.7px;
+}
+
+.ls-3 {
+    letter-spacing: 2.35px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.fs-900 {
+    font-size: var(--fs-900);
+}
+
+.fs-800 {
+    font-size: var(--fs-800);
+}
+
+.fs-700 {
+    font-size: var(--fs-700);
+}
+
+.fs-600 {
+    font-size: var(--fs-600);
+}
+
+.fs-500 {
+    font-size: var(--fs-500);
+}
+
+.fs-400 {
+    font-size: var(--fs-400);
+}
+
+.fs-300 {
+    font-size: var(--fs-300);
+}
+
+.fs-200 {
+    font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+    line-height: 1.1;
+}
+
+/* ------------------------------------------------------------------------------------------------------------
+components
+--------------------------------------------------------------------------------------------------------------*/
+
+/* numbere titles */
+
+.numbered-title p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.125rem;
+    letter-spacing: 0.2953rem;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.numbered-title p span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.125rem;
+    letter-spacing: 0.2953rem;
+    text-align: left;
+    color: hsl(var(--white) / 0.25);
+    margin-right: 1.75rem;
+    text-transform: uppercase;
+}
+
+/* buttons */
+
+.btn-large {
+    width: 17.125rem;
+    height: 17.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: relative;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.btn-large::after {
+    content: '';
+    height: 17.125rem;
+    width: 17.125rem;
+    background-color: inherit;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-radius: 50%;
+    transition: 0.75s ease-in-out;
+}
+
+.btn-large:hover::after,
+.btn-large:focus::after {
+    transform: scale(1.5)
+}
+
+@media screen and (max-width: 480px){
+    .btn-large{
+        width: 9.375rem;
+        height: 9.375rem;
+    }
+
+    .btn-large span{
+        font-size: 20px;
+        letter-spacing: 1.25px;
+
+    }
+
+    .btn-large::after{
+        width: 9.375rem;
+        height: 9.375rem; 
+    }
+}
+
+@media screen and (max-width: 900px){
+    .btn-large{
+        width: 15.125rem;
+        height: 15.125rem;
+    }
+
+    .btn-large::after{
+        width: 15.125rem;
+        height: 15.125rem; 
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------
+1.1 home page
+--------------------------------------------------------------------------------------------------------------*/
+.home__main {
+    background: url("../statics/home/background-home-desktop.jpg") padding-box center center / cover no-repeat;
+    display: grid;
+    grid-template-rows: minmax(2rem, 13.25rem) minmax(5rem, 1fr);
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .home__main {
+        background: url("../statics/home/background-home-tablet.jpg") padding-box center center / cover no-repeat;
+        grid-template-rows: minmax(2rem, min-content) minmax(5rem, 1fr);
+        align-items: start;
+        row-gap: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .home__main {
+        background: url("../statics/home/background-home-mobile.jpg") padding-box center center / cover no-repeat;
+        grid-template-rows: minmax(2rem, min-content) minmax(5rem, 1fr);
+        align-items: start;
+        row-gap: 48px;
+    }
+}
+
+/* header */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-start: 3.4375rem;
+}
+
+header .line__container {
+    width: 473px;
+    opacity: 0.25;
+    z-index: 2;
+    transform: translateX(65px);
+}
+
+header .logo__container img {
+    max-width: 48px;
+    height: auto;
+}
+
+header .nav__container {
+    height: 96px;
+    background-color: hsl(var(--white) / 0.04);
+    backdrop-filter: blur(81.5485px);
+    z-index: 1;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    padding-right: 15%;
+    padding-left: 10%;
+}
+
+.menu-button__container {
+    display: none;
+}
+
+/* numbere nav */
+
+.numbered-nav a {
+    text-decoration: none;
+    color: hsl(var(--white));
+    position: relative;
+}
+
+.numbered-nav a:not(.current-page):hover:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: hsl(var(--white) / 0.5);
+    position: absolute;
+    top: 60px;
+}
+
+.numbered-nav .current-page::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: hsl(var(--white));
+    position: absolute;
+    top: 58px;
+}
+
+.numbered-nav p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: var(--fs-400);
+    font-weight: 400;
+    letter-spacing: var(--ls-2);
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.numbered-nav p span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: var(--fs-400);
+    font-weight: 700;
+    letter-spacing: var(--ls-2);
+    text-align: left;
+    margin-right: 0.75rem;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 900px) {
+    header .line__container {
+        display: none;
+    }
+
+    .numbered-nav p span {
+        display: none;
+    }
+
+    .numbered-nav p {
+        font-size: var(--fs-200);
+        letter-spacing: var(--ls-3);
+    }
+
+    header .nav__container {
+        padding-right: 10%;
+        padding-left: 10%;
+        gap: 35px;
+    }
+
+    .menu-button__container{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header{
+        margin: 24px;
+        padding: 0;
+    }
+
+    header .logo__container img {
+        max-width: 40px;
+        height: auto;
+    }
+
+    header .line__container {
+        display: none;
+    }
+
+    .numbered-nav p span {
+        display: none;
+    }
+
+    .numbered-nav p {
+        font-size: var(--fs-200);
+        letter-spacing: var(--ls-3);
+    }
+
+    .menu-button__container {
+        display: block;
+        z-index: 3;
+        position: relative;
+    }
+
+    .menu-button__container:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("../statics/shared/icon-close.svg") center / cover no-repeat ;
+        z-index: 3;
+        visibility: hidden;
+    }
+
+    .menu-button__container.hidden:after{
+        visibility: visible;
+    }
+
+    header .nav__container {
+        position: fixed;
+        display: none;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 67%;
+        background-color: hsl(var(--white) / 0.04);
+        backdrop-filter: blur(81.5485px);
+        z-index: 3;
+        flex-direction: column;
+        gap: 3rem;
+        text-align: left;
+        align-items: flex-start;
+        padding-top: 118px;
+        transition: 1s;
+    }
+
+    .numbered-nav p span {
+        display: inline-block;
+    }
+
+    .numbered-nav .current-page::after{
+        display: none;
+    }
+}
+
+/* main grid */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: minmax(0rem, 11%) minmax(5rem, 31.25%) minmax(1rem, 11%) minmax(5rem, 31.25%) minmax(0rem, 11%);
+    justify-content: space-between;
+}
+
+.grid-container div:first-child {
+    grid-column: 2;
+}
+
+.grid-container div:nth-child(2) {
+    grid-column: 4;
+    justify-self: end;
+    align-self: center;
+}
+
+.text__container {
+    --flowspace: 28px;
+}
+
+@media screen and (max-width: 900px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: minmax(0rem, 20%) minmax(15.625rem, 1fr) minmax(0rem, 20%);
+        grid-template-rows: 1fr 1fr;
+        justify-content: space-between;
+    }
+
+    .grid-container div:nth-child(2) {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .grid-container h3 {
+        font-size: 20px;
+        letter-spacing: 3.38px;
+    }
+
+    .text__container {
+        text-align: center;
+        --flowspace: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: minmax(0rem, 5%) minmax(5rem, 1fr) minmax(0rem, 5%);
+        grid-template-rows: 1fr 1fr;
+        row-gap: 81px;
+    }
+
+    .grid-container h3 {
+        font-size: 16px;
+        letter-spacing: 2.7px;
+    }
+
+    main .grid-container h1{
+        font-size: 80px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------
+2.1 destinations
+--------------------------------------------------------------------------------------------------------------*/
+.destinations-body {
+    background: url("../statics/destination/background-destination-desktop.jpg") padding-box center center / cover no-repeat;
+    display: grid;
+    grid-template-rows: minmax(2rem, 13.25rem) minmax(5rem, 1fr);
+    align-items: center;
+}
+
+
+@media screen and (max-width: 900px) {
+    .destinations-body {
+        background: url("../statics/destination/background-destination-tablet.jpg") padding-box center center / cover no-repeat;
+        grid-template-rows: minmax(2rem, min-content) minmax(5rem, 1fr);
+        align-items: start;
+        row-gap: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .destinations-body {
+        background: url("../statics/destination/background-destination-mobile.jpg ") padding-box center center / cover no-repeat;
+        grid-template-rows: minmax(2rem, min-content) minmax(5rem, 1fr);
+        align-items: start;
+        row-gap: 48px;
+    }
+}
+
+/* planets-nav */
+.planets-nav__container{
+    height: 96px;
+    display: flex;
+    gap: 2.1875rem;
+    align-items: center;
+    font-size: var(--fs-300);
+    letter-spacing: var(--ls-2);
+    font-family: var(--ff-sans-cond)
+}
+
+.planets-nav a {
+    text-decoration: none;
+    color: hsl(var(--white));
+    position: relative;
+}
+
+.planets-nav a:not(.current-page){
+    color: hsl(var(--accent));
+}
+
+.planets-nav a:not(.current-page):hover:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: hsl(var(--white) / 0.5);
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+}
+
+.planets-nav .current-page::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: hsl(var(--white));
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+}
+
+.destinations-body .text__container .data__container{
+    display: flex;
+    gap: 79px;
+}
+
+.destinations-body .text__container hr{
+    border-top: 1px solid #383B4B;
+    opacity: 0.5;
+}
+
+.destinations-body .planets__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 97px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 900px) {
+    .destinations-body {
+        align-items: center;
+    }
+
+    .destinations-body .grid-container{
+        display: grid;
+        grid-template-columns: minmax(0rem, 10%) minmax(15.625rem, 1fr) minmax(0rem, 10%);
+        grid-template-rows: min-content min-content;
+    }
+
+    .destinations-body .planets__container {
+        --flowspace: 0px;
+        gap: 60px;
+    }
+
+    .destinations-body .numbered-title{
+        align-self: start;
+    }
+
+    .destinations-body .numbered-title *:where(p, span){
+        font-size: 20px;
+        letter-spacing: 3.37px;
+    }
+
+    .destinations-body .planets__container img{
+        height: 300px;
+        width: 300px;
+    }
+
+    .destinations-body .text__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+@media screen and (max-width: 480px){
+    .destinations-body .text__container .data__container{
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .destinations-body .grid-container{
+        row-gap: 32px;
+    }
+}
